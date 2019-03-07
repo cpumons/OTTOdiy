@@ -266,6 +266,7 @@ void goingUp(int tempo){
 
 }
 
+
 void primera_parte(){
   
   int move1[4] = {60,120,90,90};

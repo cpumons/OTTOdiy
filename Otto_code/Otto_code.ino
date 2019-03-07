@@ -20,6 +20,8 @@ Otto Otto;
 #define TRIM_YL -7
 #define INTERVALTIME 10.0 
 
+Oscillator servo[N_SERVOS];
+
 #define NOTE_E4  330
 #define NOTE_F4  349
 #define NOTE_G4  392
@@ -87,11 +89,7 @@ void setup(){
   servo[1].attach(PIN_RL);
   servo[2].attach(PIN_YR);
   servo[3].attach(PIN_YL);
-  
-  //EEPROM.write(0,TRIM_RR);
-  //EEPROM.write(1,TRIM_RL);
-  //EEPROM.write(2,TRIM_YR);
-  //EEPROM.write(3,TRIM_YL);
+
   
   int trim;
   
@@ -153,8 +151,12 @@ void loop(){
     else if (message == 'F')
     {
       Serial.println("il evite les obstacles");
-      dance()
+      dance();
       for(int i=0;i<4;i++) servo[i].SetPosition(90);
+    }
+    else if (message == 'G')
+    {
+      avoid();
     }
   }
 }
